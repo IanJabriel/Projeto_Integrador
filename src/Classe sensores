@@ -7,7 +7,7 @@ enum Unidade
 
 class Dado {
 public:
-  int valor;
+  float valor;
   Unidade unidade;
   Dado (float valor, Unidade unidade) {
     this->valor = valor;

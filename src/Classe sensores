@@ -1,9 +1,7 @@
-
 enum Unidade
 {
   UMIDADE,
   CELSIUS
-
 } ;
 
 
@@ -46,7 +44,7 @@ private:
 };
 
 
-const SensorMap SOIL_MOISTURE_SENSOR(0, 872, 0, 100);
+const SensorMap SOIL_MOISTURE_SENSOR(0, 4096, 0, 100);
 
 
 class Sensor
@@ -65,9 +63,7 @@ private:
   float leituraGenerica(){
     float dado=analogRead(this->pin);
     float leitura=this->mapper.mapear(dado);
-    // tirar quando der
-    Serial.println(leitura);
- 	return leitura;
+    return leitura;
   }
   
   Dado ler() {
@@ -81,9 +77,9 @@ private:
 void debug(const Dado& dado) {
   switch(dado.unidade) {
     case Unidade::UMIDADE:
-    	Serial.print("Umidade do solo:");
+      Serial.print("Umidade do solo:");
     default:
-    	Serial.print("Unidade Desconhecida");
+      Serial.print("Outra unidade:");
   }
   Serial.println(dado.valor);
 }

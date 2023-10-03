@@ -1,3 +1,5 @@
+#include<DHT.h>
+
 enum Unidade{
   UMIDADE,
   CELSIUS,
@@ -89,11 +91,11 @@ private:
 public:
   SensorDHT(int pin) : dht(pin, DHT22) {
     dht.begin();
-    temperatura = 0;
-    umidade = 0;
+    temperatura;
+    umidade;
   }
 
-  void leituraDHT() {
+  float leituraDHT() {
     umidade = dht.readHumidity();
     temperatura = dht.readTemperature();
     
@@ -103,10 +105,12 @@ public:
   }
 
   float lerTemperatura() {
+    temperatura = dht.readTemperature();
     return temperatura;
   }
 
   float lerUmidade() {
+    umidade = dht.readHumidity();
     return umidade;
   }
 
@@ -116,12 +120,11 @@ public:
   }
 };
 
+SensorDHT sensorDHT(26);
 
 //Sensor(13,Unidade UMIDADE,const SensorMap& mapper);
 Sensor sensorTeste(34,UMIDADE,SOIL_MOISTURE_SENSOR);
 Sensor sensorLDR(35,LUZ,LDR_SENSOR);
-
-
 
 int led_ldr = 6;
 
@@ -131,14 +134,12 @@ void setup() {
   //setup_wifi();
   //client.setServer(mqttServer, mqttPort);
   //client.setCallback(callback);
- 
 }
 
 
 int umi_solo = 0;
 int ldr = 0;
 
-SensorDHT sensorDHT(32);
 
 void loop()
 {

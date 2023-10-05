@@ -2,13 +2,13 @@
 #include <PubSubClient.h>
 #include<DHT.h>
 
-const char* ssid = "pao";
-const char* password = "147258369";
+const char* ssid = "NOME DA REDE";
+const char* password = "SENHA DA REDE";
 const char* mqtt_server = "broker.hivemq.com";
 
 WiFiClient wifiClient;
 PubSubClient client(wifiClient); 
-char *mqttServer = "broker.hivemq.com";
+char* mqttServer = "broker.hivemq.com";
 int mqttPort = 1883;
 unsigned long lastMsg = 0;
 #define MSG_BUFFER_SIZE (50)
@@ -21,7 +21,7 @@ void setupMQTT() {
 
 void setup_wifi() {
   delay(10);
-    Serial.println();
+  Serial.println();
   Serial.print("Conectando na rede ");
   Serial.println(ssid);
 
@@ -184,6 +184,14 @@ int umi_solo = 0;
 int ldr = 0;
 float value = 0;
 
+void setup() {
+    Serial.begin(57600);
+    setup_wifi();
+    client.setServer(mqttServer, mqttPort);
+    client.setCallback(callback);
+    delay(500);
+}
+
 void loop() {
     if (!client.connected())
       reconnect();
@@ -262,12 +270,4 @@ void loop() {
       reconnect();
     }
     client.loop();
-}
-
-void setup() {
-    Serial.begin(57600);
-    setup_wifi();
-    client.setServer(mqttServer, mqttPort);
-    client.setCallback(callback);
-    delay(500);
 }

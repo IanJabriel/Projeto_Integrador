@@ -7,6 +7,7 @@ Projeto integrador em que desenvolvemos um controle de qualidade de vida de uma 
 - Gabriel Verri
 - João Vitor
 - Gabriel Lenzi
+- David Martins 
 - Marcela Marcelino
 - José Leonardo
 - Vírgilio Eduardo
